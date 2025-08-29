@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name":"Strange tabs",
+    "version":"1.0",
+    "description": "The Sorcerer's Tool for Tab Mastery.",
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+     "action": {
+        "default_popup": "popup.html"
+    }
+}
