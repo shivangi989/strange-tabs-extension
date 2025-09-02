@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded',async ()=>{
     console.log("Strange Tabs popup script Loaded");
-    try{
-    const tab=await chrome.tabs.query({currentWindow:true,pinned:false});
-    console.log(tab);
+    const tab=await getcurrenttabs();
+    displayCurrent(tab);
     const saveSessionBtn=document.querySelector('#saveBtn');
     saveSessionBtn.addEventListener('click',async ()=>{
+        const tabstosave=await getcurrenttabs();
         const sessionName=window.prompt('enter the name of the session');
         if(!sessionName){
             return;
@@ -14,17 +14,22 @@ document.addEventListener('DOMContentLoaded',async ()=>{
                 id:Date.now(),
                 title:sessionName,
                 update:new Date().toLocaleDateString(),
-                tabs:tab
+                tabs:tabstosave
             }
             savesession(session);
         }
     });
-    }
-    catch(error){
+});
+
+async function getcurrenttabs(){
+    try{
+        const tab=await chrome.tabs.query({currentWindow:true,pinned:false});
+        console.log(tab);
+        return tab;
+    }catch(e){
         console.log("Problem fetching the data",error);
     }
-
-});
+}
 
 async function getAllSession(){
     try{
@@ -53,3 +58,21 @@ async function savesession(session){
         alert("Error",error);
     }
 }
+
+function displayCurrent(tabs){
+    const currentList=document.querySelector(".currentTabList");
+    currentList.innerHTML="";
+    for (const element of tabs)  {
+        const currentdiv=document.createElement('div');
+        currentdiv.classList.add('.tab-item');
+        const icon=document.createElement('img');
+        icon.classList.add(".icon");
+        icon.src=element.favIconUrl;
+        const tabtitle=document.createElement('span');
+        tabtitle.textContent=element.title;
+        currentdiv.appendChild(icon);
+        currentdiv.appendChild(tabtitle);
+        currentList.appendChild(currentdiv);
+    }; 
+}
+
