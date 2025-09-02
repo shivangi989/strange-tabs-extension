@@ -4,3 +4,45 @@ body{
     background: #000;
     color:aliceblue;
 }
+.currentTabList{
+    max-height:180px;
+    overflow-y: auto;
+    border:1px solid #333;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.tab-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height:25px;
+    color:white;
+    margin:0.6rem;
+    padding:0.6rem;
+    text-align: center;
+    font-size: 1rem;
+    border-bottom: 1px solid orangered ;
+    border-radius: 8px;
+    box-shadow:1px 1px 2px 3px #690101;
+}
+
+.tab-item .icon{
+     height:16px;
+     width:16px;
+     margin-right:8px;
+     vertical-align:middle;
+}
+#saveBtn{
+    padding:0.5rem;
+    margin:0.5rem;
+    border:none;
+    background: #861303;
+    color:white;
+    border-radius:8px;
+    transition:all 0.3s ease;
+}
+#saveBtn:hover{
+    border:1px solid orange;
+    transform: scale(0.98);
+}

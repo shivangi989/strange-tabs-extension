@@ -64,9 +64,9 @@ function displayCurrent(tabs){
     currentList.innerHTML="";
     for (const element of tabs)  {
         const currentdiv=document.createElement('div');
-        currentdiv.classList.add('.tab-item');
+        currentdiv.classList.add('tab-item');
         const icon=document.createElement('img');
-        icon.classList.add(".icon");
+        icon.classList.add("icon");
         icon.src=element.favIconUrl;
         const tabtitle=document.createElement('span');
         tabtitle.textContent=element.title;
