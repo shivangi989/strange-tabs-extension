@@ -4,7 +4,7 @@ body{
     background: #000;
     color:aliceblue;
 }
-.currentTabList{
+.currentTabList, .sessionsList{
     max-height:180px;
     overflow-y: auto;
     border:1px solid #333;
@@ -12,7 +12,7 @@ body{
     padding: 5px;
 }
 
-.tab-item{
+.tab-item ,.session-item{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -46,3 +46,4 @@ body{
     border:1px solid orange;
     transform: scale(0.98);
 }
+

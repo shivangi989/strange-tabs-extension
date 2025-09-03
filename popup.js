@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded',async ()=>{
     console.log("Strange Tabs popup script Loaded");
-    const tab=await getcurrenttabs();
+    const tab=await getCurrentTabs();
     displayCurrent(tab);
+    await displaySavedSessions();
     const saveSessionBtn=document.querySelector('#saveBtn');
     saveSessionBtn.addEventListener('click',async ()=>{
-        const tabstosave=await getcurrenttabs();
+        const tabsToSave=await getcurrenttabs();
         const sessionName=window.prompt('enter the name of the session');
         if(!sessionName){
             return;
@@ -13,27 +14,30 @@ document.addEventListener('DOMContentLoaded',async ()=>{
             const session={
                 id:Date.now(),
                 title:sessionName,
-                update:new Date().toLocaleDateString(),
-                tabs:tabstosave
+                createdAt:new Date().toLocaleDateString(),
+                tabs:tabsToSave
             }
-            savesession(session);
+            await saveSession(session);
+            await displaySavedSessions();
         }
     });
 });
 
-async function getcurrenttabs(){
+
+async function getCurrentTabs(){
     try{
         const tab=await chrome.tabs.query({currentWindow:true,pinned:false});
         console.log(tab);
         return tab;
     }catch(e){
-        console.log("Problem fetching the data",error);
+        console.log("Problem fetching the data",e);
     }
 }
 
+
 async function getAllSession(){
     try{
-        const sessions=await chrome.storage.local.get(null);
+        const sessions=await chrome.storage.local.get(['savedsession']);
         console.log("Data fetching successfull");
         return sessions;
     }
@@ -42,7 +46,7 @@ async function getAllSession(){
     }
 }
 
-async function savesession(session){
+async function saveSession(session){
     try{
         const result=await getAllSession();
         const allSession=result.savedsession||[];
@@ -74,5 +78,22 @@ function displayCurrent(tabs){
         currentdiv.appendChild(tabtitle);
         currentList.appendChild(currentdiv);
     }; 
+}
+
+async function displaySavedSessions(){
+    const sessionList=document.querySelector(".sessionsList");
+    sessionList.innerHTML="";
+    const result=await getAllSession();
+    const session=result.savedsession||[];
+    for (const element of session)  {
+        const sessiondiv=document.createElement('div');
+        sessiondiv.classList.add('session-item');
+        sessiondiv.dataset.id=element.id;
+        const sessiontitle=document.createElement('span');
+        sessiontitle.textContent=element.title;
+        sessiondiv.appendChild(sessiontitle);
+        sessionList.appendChild(sessiondiv);
+    }; 
+    console.log("displayed session successfully");
 }
 
