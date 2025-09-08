@@ -1,4 +1,3 @@
----
 
 ## Features
 
@@ -33,4 +32,3 @@
 * React
 * Firebase (Authentication & Firestore)
 
----
