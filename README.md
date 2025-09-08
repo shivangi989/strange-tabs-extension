@@ -1,23 +1,36 @@
-# Strange Tabs: The Sorcerer's Tool for Tab Mastery
+---
 
-A browser extension inspired by Doctor Strange to help users manage their browser tabs with magical efficiency. This project is currently in development.
+## Features
 
-## The Problem
+### ✅ Completed Features (as of Sep 8, 2025)
 
-This project aims to solve the problem of "tab clutter" which leads to confusion, decreased productivity, and poor browser performance. Strange Tabs provides a suite of tools to organize, save, and automate tab management.
+* **Live Tab View:** Displays a real-time, styled list of all currently open tabs, complete with favicons.
+* **Save Sessions:** Allows a user to save the entire current browsing session with a custom name.
+* **Display Saved Sessions:** Reads from storage and displays a list of all previously saved sessions.
+* **Persistent Storage:** Uses the `chrome.storage` API to ensure saved sessions are available when the popup is reopened.
+* **Themed UI:** A custom dark theme with interactive hover effects and SVG icons.
 
-## Planned Features
+### 🚧 Currently in Development (Completing the MVP)
 
-* **Tab Grouping:** Organize tabs into collapsible, color-coded groups.
-* **Session Management:** Save and restore entire Browse sessions with a single click.
-* **AI-Driven Suggestions:** Get smart suggestions for grouping or closing tabs.
-* **Cloud Sync:** Sync user settings and sessions across multiple devices using Firebase.
-* **Thematic UI:** A unique user interface inspired by the mystic arts of Doctor Strange.
+* **Restore Sessions:** Implementing the logic to restore all tabs from a saved session.
+* **Delete Sessions:** Implementing the logic to permanently delete a saved session.
 
-## Tech Stack (Planned)
+### 🔮 Roadmap (Future Features)
 
-* **Frontend:** React
-* **Browser APIs:** Chrome WebExtensions API
-* **Backend & Sync:** Firebase (Authentication & Firestore)
-* **Styling:** CSS
-  
+* Rebuild the UI with **React** for a more dynamic experience.
+* Implement **User Accounts & Cloud Sync** with **Firebase**.
+* Add **AI-Driven Suggestions** for automatic tab grouping.
+
+---
+## Tech Stack
+
+### 🏗️ Built With (MVP)
+* HTML5 & CSS3
+* JavaScript (ES6+, Async/Await)
+* Chrome WebExtensions API
+
+### 🚀 Planned Tech Stack
+* React
+* Firebase (Authentication & Firestore)
+
+---
