@@ -1,13 +1,37 @@
+:root{
+    --background-dark:#120c18;
+    --text-primary:#e5e5e5;
+    --accent-orange:#fca311;
+    --accent-gold:#ffd700;
+    --danger-red:#d90429;
+    --border-color:#332140;
+    --font-style:
+}
+
 body{
     width:350px;
     padding:10px;
-    background: #000;
-    color:aliceblue;
+    background: var(--background-dark);
+    color:var(--text-primary);
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
+
+h2, h3 {
+    font-family: 'Cinzel', serif; 
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-shadow: 0 0 5px var(--accent-orange); 
+}
+
 .currentTabList, .sessionsList{
     max-height:180px;
     overflow-y: auto;
-    border:1px solid #333;
+    overflow-x: hidden;
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right,var(--accent-orange), var(--accent-gold));
     border-radius: 8px;
     padding: 5px;
 }
@@ -22,9 +46,25 @@ body{
     padding:0.6rem;
     text-align: center;
     font-size: 1rem;
-    border-bottom: 1px solid orangered ;
+    border: 1px solid orangered ;
     border-radius: 8px;
-    box-shadow:1px 1px 2px 3px #690101;
+    transition: box-shadow 0.3s ease;
+}
+
+.session-item{
+    display: flex;
+    align-items: center;
+}
+
+.session-item .actions {
+    margin-left: auto; 
+    display: flex;
+}
+
+.session-item:hover, .tab-item:hover {
+    box-shadow: 0 0 5px #fca31166,
+                0 0 15px #fca3114d, 
+                0 0 25px #fca31133; 
 }
 
 .tab-item .icon{
@@ -33,6 +73,7 @@ body{
      margin-right:8px;
      vertical-align:middle;
 }
+
 #saveBtn{
     padding:0.5rem;
     margin:0.5rem;
@@ -42,8 +83,42 @@ body{
     border-radius:8px;
     transition:all 0.3s ease;
 }
+
 #saveBtn:hover{
-    border:1px solid orange;
-    transform: scale(0.98);
+    box-shadow:1px 1px 3px 3px var(--accent-gold);
+    transform: scale(0.96);
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: auto;
+    color: var(--text-primary); 
+    transition: all 0.2s ease;
+}
+.restore-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: var(--text-primary); 
+    transition: all 0.2s ease;
+}
+
+.delete-btn svg ,.restore-btn svg{
+    width: 20px;
+    height: 20px;
+    stroke: currentColor; 
+}
+
+.delete-btn:hover{
+    color: var(--danger-red);
+    transform: scale(1.1); 
+}
+.restore-btn:hover{
+    color:var(--accent-gold);
+    transform: scale(1.1);
 }
 
