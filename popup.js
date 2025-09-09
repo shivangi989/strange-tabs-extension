@@ -137,6 +137,19 @@ sessionList.addEventListener('click',async (event)=>{
             deleteSession(sessionIdAsNumber);
             }
         }
+    const sessionResBtn=event.target.closest('.restore-btn');
+    console.log("session restore btn",sessionResBtn);
+    if(sessionResBtn){
+            const sessionItem=event.target.closest('.session-item');
+            console.log("session Item",sessionItem);
+            if(sessionItem){
+            const sessionId=sessionItem.dataset.id;
+            console.log("session id is ",sessionId)
+            const sessionIdAsNumber = Number(sessionId);
+            console.log('Note to restore: ',sessionIdAsNumber);
+            restoreSession(sessionIdAsNumber);
+            }
+        }
 });
 
 async function deleteSession(sessionId){
@@ -157,4 +170,24 @@ async function deleteSession(sessionId){
         console.log("error in deleting the session",e);
     }
     
+}
+async function restoreSession(idToRestore){
+
+    try{
+        const result=await getAllSession();
+        const allSession=result.savedsession||[];
+        const foundSession=allSession.find(session => session.id===idToRestore);
+        console.log("found session",foundSession);
+        if(foundSession){
+        foundSession.tabs.forEach(element => {
+            chrome.tabs.create({url:element.url});
+        });
+        deleteSession(idToRestore);
+        }
+
+    }
+
+    catch(e){
+        console.log("error in restoring the session",e);
+    }
 }
